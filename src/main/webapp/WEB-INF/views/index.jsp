@@ -10,11 +10,10 @@
     <body>
 
         <sec:authorize access="isAuthenticated()">
-            <sec:authentication property="principal"/>
-            현재 사용자: 
-            <sec:authentication property="principal.username"/>
+            <sec:authentication property="principal" var="principal"/>
+            현재 사용자: ${principal.username}<br>
         </sec:authorize>
-
+        
         Hello index
         <p>
             <a href="/user/login">login</a> <br>
