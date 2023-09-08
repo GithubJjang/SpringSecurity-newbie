@@ -19,7 +19,9 @@ public class PrincipalDetails implements UserDetails{
 		password=user.getPassword();
 	}
 	
-	//getter-setter
+	// getter-setter
+	// jstl을 사용해서, jsp로 넘긴 객체의 attribute에 접근할 수 있다.
+	// ex)${principal.username} -> principal의 username 변수에 접근.
 	public User getUser() {
 		return user;
 	}
@@ -45,7 +47,7 @@ public class PrincipalDetails implements UserDetails{
 	}
 
 
-	// 해당 User의 권한을 리턴하는 곳
+	// 해당 User의 권한을 리턴하는 곳 -> 업데이트 예정!
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return null;
