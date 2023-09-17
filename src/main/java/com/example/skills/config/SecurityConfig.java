@@ -28,7 +28,10 @@ public class SecurityConfig  {
 		  	.csrf().disable()//CSRF(Cross-Site Request Forgery) 토큰을 비활성화합니다. 테스트를 위해 임시로 비활성화하는 것으로 보입니다.
 			.authorizeRequests()// 요청에 대한 인가 규칙을 설정합니다.
 				//.antMatchers("/user/**","/").authenticated()//인증이 필요한 주소
-			    .anyRequest().permitAll()
+				.antMatchers("/user/**","/").permitAll()
+				// 굳이 hasRole 부분에 "ROLE_ADMIN"안해도 알아서 "ROLE_"을 붙여줌
+				.antMatchers("/auth/user").hasAnyRole("ADMIN","USER")
+				.antMatchers("/auth/admin").hasRole("ADMIN")
 		 		.and()
 		 		.formLogin()
 		 		.loginPage("/user/login") // 여기까지는 성공

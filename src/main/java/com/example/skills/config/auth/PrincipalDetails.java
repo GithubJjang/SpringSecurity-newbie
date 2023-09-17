@@ -1,8 +1,10 @@
 package com.example.skills.config.auth;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.example.skills.Domain.User;
@@ -50,11 +52,17 @@ public class PrincipalDetails implements UserDetails{
 	// 해당 User의 권한을 리턴하는 곳 -> 업데이트 예정!
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return null;
+		Collection<GrantedAuthority> auth = new ArrayList<>();
+		// auth에 권한을 추가한다.
+		
+		// GrantedAuthority -> 인터페이스
+		// SimpleGrantedAuthority -> 위 인터페이스의 클래스
+		// 주로 SimpleGrantedAuthority를 이용해서 권한 객체를 만든다.
+		auth.add(new SimpleGrantedAuthority(user.getRoletype().toString()));
+		
+		return auth;
+		
 	}
-
-	
-
 	//
 	@Override
 	public boolean isAccountNonExpired() {

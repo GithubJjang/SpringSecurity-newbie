@@ -19,9 +19,8 @@ public class PrincipalDetailsService implements UserDetailsService {
 		// 중요한 팁:
 		// 1. loginForm에서 무조건! <input type="text"  name="username" placeholder="username"/>
 		// 만약, name에 다른 것을 입력하라 경우 파라미터를 가져오지 못함!
-		System.out.println("유저: "+username);
+
 		User user = userRepository.findByname(username);
-		System.out.println("유저: "+user.getName());
 		if(user != null) {
 			// 세션을 만들어서 리턴한다.
 			return new PrincipalDetails(user);
